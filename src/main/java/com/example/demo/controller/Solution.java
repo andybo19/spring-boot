@@ -7,14 +7,28 @@ import java.util.Map;
 
 public class Solution {
 
+    private static boolean ready;
+
+    private static int number;
+
+    private static class  ReaderThread extends Thread{
+        public void run(){
+            while (!ready)
+                Thread.yield();
+            System.out.println(number);
+        }
+    }
     public static void main(String[] args) {
        /* int[] arr = {1, 4, 5, 3};
         int target =10;
         int[] result = getResult(arr, target);
         System.out.println(Arrays.toString(result));*/
 
-        String str = "()[{}]";
-        System.out.println(getCheckResult(str));
+        /*String str = "()[{}]";
+        System.out.println(getCheckResult(str));*/
+        new ReaderThread().start();
+        number =42;
+        ready = true;
 
     }
 
