@@ -2,15 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
-@Controller
+@RestController
 public class HelloController {
     @Value("${server.port}")
     private String port;
@@ -18,6 +15,14 @@ public class HelloController {
     @RequestMapping("/hello")
     public String home(@RequestParam String name){
         return "Hello World,"+name+", I am from "+port;
+    }
+
+    @RequestMapping("/helloNew")
+    @ResponseBody
+    public User homeNew(@RequestParam String name){
+        User user = new User();
+        user.setUserName(name);
+        return user;
     }
 
     @GetMapping("/HelloWorld")

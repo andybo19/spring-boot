@@ -1,7 +1,8 @@
 package com.example.demo.resource;
 
-import com.example.demo.dao.UserDao;
+import com.example.demo.dao.user.UserDao;
 import com.example.demo.domain.User;
+import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloWorld {
 
     @Autowired
-    String helloTest;
+    private String helloTest;
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
+
+    @Autowired
+    private UserService userService;
 
 
     @RequestMapping("/first")
@@ -48,13 +52,11 @@ public class HelloWorld {
 
     @GetMapping("/insert")
     @ResponseBody
-    @Transactional
-    public User insertByMobile(String mobile){
+    public User insertByMobile(String mobile,String name){
         User user = new User();
-        user.setMobileNumber("9874123564");
-        user.setUserName("andyqin");
-        userDao.insert(user);
-        System.out.println(1/0);
+        user.setMobileNumber(mobile);
+        user.setUserName(name);
+        userService.insert(user);
         System.out.println(user.toString());
         return user;
     }

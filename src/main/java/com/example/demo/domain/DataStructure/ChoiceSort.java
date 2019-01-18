@@ -17,6 +17,11 @@ public class ChoiceSort {
                 array[i] = temp;
             }
             System.out.println("第"+(i+1)+"轮排序后的结果为:"+ Arrays.toString(array));
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return array;
     }
@@ -30,5 +35,6 @@ public class ChoiceSort {
         System.out.println("-----------------------");
         System.out.println("经过冒泡排序后的数组顺序为：");
         System.out.println(Arrays.toString(array));
+
     }
 }

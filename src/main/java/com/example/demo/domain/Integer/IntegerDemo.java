@@ -5,5 +5,6 @@ public class IntegerDemo {
     public static void main(String[] args) {
         Integer i = Integer.valueOf(10);
         int n =i;
+        Boolean.valueOf(true);
     }
 }

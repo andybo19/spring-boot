@@ -14,6 +14,7 @@ public class DemoApplication {
 		return "这是一个字符串Bean";
 	}
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}

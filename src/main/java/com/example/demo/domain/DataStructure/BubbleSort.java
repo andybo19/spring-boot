@@ -32,6 +32,23 @@ public class BubbleSort {
         System.out.println("-----------------------");
         System.out.println("经过冒泡排序后的数组顺序为：");
         System.out.println(Arrays.toString(array));
+        int x=5;
+        int y=10;
+        //swapBit(x,y);
+
     }
 
+    public static void swap(int x,int y){
+        int temp = x;
+        x = y;
+        y=temp;
+        System.out.println("x= "+x);
+        System.out.println("y= "+y);
+    }
+
+    public void swapBit(int x,int y){
+        int temp = x^y;
+        y=temp^y;
+        x=temp^y;
+    }
 }
