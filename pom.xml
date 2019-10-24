@@ -57,6 +57,11 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
 		<!-- 引入mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
