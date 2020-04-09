@@ -17,11 +17,23 @@ public class HelloController {
         return "Hello World,"+name+", I am from "+port;
     }
 
+    @RequestMapping("/testUser")
+    public String testUser(User user){
+        return "Hello World,"+user.getUserName()+", I am from "+port;
+    }
+
     @RequestMapping("/helloNew")
     @ResponseBody
     public User homeNew(@RequestParam String name){
         User user = new User();
         user.setUserName(name);
+        return user;
+    }
+
+    @RequestMapping(value = "/postUser")
+    @ResponseBody
+    public User homeNew(@RequestBody User user){
+        user.setUserName("测试");
         return user;
     }
 

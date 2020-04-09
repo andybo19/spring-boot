@@ -1,20 +1,12 @@
 package com.example.demo.service.rabbitmq.bootImpl.Topic;
 
-import com.example.demo.service.rabbitmq.bootImpl.RabbitProducer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-
-import javax.annotation.PostConstruct;
-import java.util.UUID;
-
-@Configuration
+//@Configuration
 public class TopicConfig {
     private static final String[] LOG_LEVEL_ARR = {"dao.error.debug", "dao.info", "dao.error",
             "try.service.debug", "service.info", "service.error",
             "controller.debug", "controller.info", "controller.error"};
 
-    @Autowired
+    /*@Autowired
     private RabbitProducer producer;
 
     @Autowired
@@ -27,6 +19,6 @@ public class TopicConfig {
             System.out.println(" [x] Sent '" + message + "'");
             producer.send("topic",message,severity);
         }
-    }
+    }*/
 
 }

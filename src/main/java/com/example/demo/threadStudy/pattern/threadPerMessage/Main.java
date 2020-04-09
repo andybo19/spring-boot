@@ -1,4 +1,4 @@
-package com.example.demo.threadStudy.pattern.ThreadPerMessage;
+package com.example.demo.threadStudy.pattern.threadPerMessage;
 
 /**
  * @author mayongbo

@@ -13,7 +13,7 @@ public interface UserDao {
     @Select("SELECT * from user where mobile_number = #{mobile}")
     User findByMobile(String mobile);
 
-    @Insert("INSERT INTO `duanrong`.`user` (`user_name`, `mobile_number`) VALUES ( #{userName}, #{mobileNumber})")
+    @Insert("INSERT INTO `user` (`user_name`, `mobile_number`) VALUES ( #{userName}, #{mobileNumber})")
     int insert(User user);
 
     @UpdateProvider(type = UserDaoSql.class,method = "updateSql")

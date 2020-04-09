@@ -2,17 +2,13 @@ package com.example.demo.domain;
 
 public class User {
 
-    public static final String USER_INTERIOR_MARK = "duanrongw";//内部员工标识
-    //返利网来源标识
-    public static final String FAN_LI_WANG = "fanliwang";
-    //风车理财来源标识
-    public static final String FENG_CHE_LI_CAI = "fengchelicai";
-
     private String id;
 
     private String userName;//用户名
 
     private String mobileNumber;//电话号码
+
+    private Integer cate1Id;
 
     public String getId() {
         return id;
@@ -38,14 +34,21 @@ public class User {
         this.mobileNumber = mobileNumber;
     }
 
+    public Integer getCate1Id() {
+        return cate1Id;
+    }
+
+    public void setCate1Id(Integer cate1Id) {
+        this.cate1Id = cate1Id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +
+                ", cate1Id=" + cate1Id +
                 '}';
     }
-
-
 }

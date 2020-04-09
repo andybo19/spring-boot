@@ -1,8 +1,6 @@
 package com.example.demo.service.rabbitmq.bootImpl.workqueue;
 
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
+//@Configuration
 public class WorkQueue {
     public static final String workQueue = "workQueue";
 
