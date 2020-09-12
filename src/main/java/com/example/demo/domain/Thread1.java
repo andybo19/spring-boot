@@ -41,8 +41,8 @@ public class Thread1 implements Runnable {
         System.out.println("++++++++++++++++++++++++");
         User user = new User() {
             @Override
-            public String getId() {
-                return "11234536";
+            public Integer getId() {
+                return 11234536;
             }
         };
         System.out.println("+++++++++++"+user.getId());

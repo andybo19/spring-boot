@@ -2,7 +2,7 @@ package com.example.demo.domain;
 
 public class User {
 
-    private String id;
+    private Integer id;
 
     private String userName;//用户名
 
@@ -10,11 +10,11 @@ public class User {
 
     private Integer cate1Id;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
