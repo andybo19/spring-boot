@@ -7,6 +7,13 @@ package com.example.demo.algorithmStudy;
  */
 public class DynamicProgram {
 
+    /**
+     * 动态规划
+     * 1.状态定义
+     * 2.转移方程
+     * @param args
+     */
+
     public static void main(String[] args) {
         int result = function(7);
         System.out.println("+++++++++++++++++"+result);
@@ -37,4 +44,6 @@ public class DynamicProgram {
         }
         return arr[n];
     }
+
+
 }

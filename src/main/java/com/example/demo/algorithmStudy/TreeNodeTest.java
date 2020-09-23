@@ -17,4 +17,15 @@ public class TreeNodeTest {
         this.val = val;
     }
 
+    public static void main(String[] args) {
+        TwoStackQueue queue = new TwoStackQueue();
+        queue.push(1);
+        queue.push(2);
+        queue.push(3);
+        queue.push(4);
+        System.out.println("出队列"+queue.pop());
+        queue.push(5);
+        System.out.println("出队列"+queue.pop());
+    }
+
 }
