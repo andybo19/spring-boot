@@ -5,10 +5,9 @@ import com.example.demo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 @Service
-public class UserService {
+public class UserService implements IUserService{
 
     @Autowired
     private UserDao userDao;
@@ -18,16 +17,24 @@ public class UserService {
         return i;
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Override
+    @Transactional
     public Integer insert(User user){
         int i = userDao.insert(user);
-        try {
-            System.out.println(1/0);
-        }catch (Exception e){
-            e.printStackTrace();
-            //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-        }
+        //System.out.println(1/0);
         return i;
     }
 
+    @Override
+    @Transactional
+    public void doNeedTx() {
+        String result = this.toString();
+        System.out.println("+++++++++++++++"+result);
+    }
+
+    @Override
+    public void doNotneedTx() {
+        String result = this.toString();
+        System.out.println("+++++++++++++++"+result);
+    }
 }

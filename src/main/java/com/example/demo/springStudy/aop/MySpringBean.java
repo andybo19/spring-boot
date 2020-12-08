@@ -1,6 +1,6 @@
 package com.example.demo.springStudy.aop;
 
-import com.example.demo.service.user.UserService;
+import com.example.demo.service.user.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -27,7 +27,7 @@ public class MySpringBean implements BeanNameAware, BeanFactoryAware, Initializi
     private static final Logger logger = LoggerFactory.getLogger(MySpringBean.class);
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     private ApplicationContext applicationContext;
 

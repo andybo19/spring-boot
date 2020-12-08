@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.User;
+import com.example.demo.service.user.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ import java.util.Date;
 public class HelloController {
     @Value("${server.port}")
     private String port;
+    @Autowired
+    IUserService userService;
 
     @RequestMapping("/hello")
     public String home(@RequestParam String name){
@@ -27,6 +31,7 @@ public class HelloController {
     public User homeNew(@RequestParam String name){
         User user = new User();
         user.setUserName(name);
+        userService.insert(user);
         return user;
     }
 

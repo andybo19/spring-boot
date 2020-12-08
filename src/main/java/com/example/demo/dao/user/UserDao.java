@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.UpdateProvider;
 @Mapper
 public interface UserDao {
 
-    @Select("SELECT * from user where mobile_number = #{mobile}")
+    @Select("SELECT * from `t_user`  where mobile_number = #{mobile}")
     User findByMobile(String mobile);
 
-    @Insert("INSERT INTO `user` (`user_name`, `mobile_number`) VALUES ( #{userName}, #{mobileNumber})")
+    @Insert("INSERT INTO `t_user` (`user_name`, `mobile_number`) VALUES ( #{userName}, #{mobileNumber})")
     int insert(User user);
 
     @UpdateProvider(type = UserDaoSql.class,method = "updateSql")

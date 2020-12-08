@@ -39,12 +39,6 @@ public class Thread1 implements Runnable {
             e.printStackTrace();
         }
         System.out.println("++++++++++++++++++++++++");
-        User user = new User() {
-            @Override
-            public Integer getId() {
-                return 11234536;
-            }
-        };
-        System.out.println("+++++++++++"+user.getId());
+
     }
 }

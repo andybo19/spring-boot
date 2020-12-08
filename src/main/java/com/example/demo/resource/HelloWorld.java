@@ -2,10 +2,9 @@ package com.example.demo.resource;
 
 import com.example.demo.dao.user.UserDao;
 import com.example.demo.domain.User;
-import com.example.demo.service.user.UserService;
+import com.example.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +19,7 @@ public class HelloWorld {
     private UserDao userDao;
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
 
     @RequestMapping("/first")
