@@ -1,8 +1,10 @@
 package com.example.demo;
 
 import com.example.demo.dao.user.UserDao;
+import com.example.demo.domain.User;
 import com.example.demo.service.user.IUserService;
 import com.example.demo.service.user.ProxyDemoService;
+import com.github.pagehelper.PageHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.aop.framework.AopProxyUtils;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,8 +31,14 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testDelete(){
-		int delete = userDao.delete(12);
-		System.out.println("+++++++++++++++++++++++++"+delete);
+		/*int delete = userDao.delete(12);
+		System.out.println("+++++++++++++++++++++++++"+delete);*/
+		PageHelper.startPage(4,3);
+		List<User> userList = userDao.getListByPage("1");
+		System.out.println("+++++++++++++结果"+userList);
+		System.out.println("____________________________________");
+/*		List<User> users = userDao.getList("1", PageBounds.page(4,3));
+		System.out.println("+++++++++++++结果"+users);*/
 	}
 
 	@Test
