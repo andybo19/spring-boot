@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.dao.user.UserDao;
 import com.example.demo.service.user.IUserService;
 import com.example.demo.service.user.ProxyDemoService;
 import org.junit.Test;
@@ -21,6 +22,15 @@ public class DemoApplicationTests {
 
 	@Autowired
 	private ProxyDemoService proxyDemoService;
+
+	@Autowired
+	private UserDao userDao;
+
+	@Test
+	public void testDelete(){
+		int delete = userDao.delete(12);
+		System.out.println("+++++++++++++++++++++++++"+delete);
+	}
 
 	@Test
 	public void contextLoads() {

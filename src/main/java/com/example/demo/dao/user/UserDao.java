@@ -2,10 +2,7 @@ package com.example.demo.dao.user;
 
 import com.example.demo.dao.user.sql.UserDaoSql;
 import com.example.demo.domain.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserDao {
@@ -18,4 +15,7 @@ public interface UserDao {
 
     @UpdateProvider(type = UserDaoSql.class,method = "updateSql")
     int update(User user);
+
+    @Delete("delete from `t_user` where id = #{id}")
+    int delete(int id);
 }
