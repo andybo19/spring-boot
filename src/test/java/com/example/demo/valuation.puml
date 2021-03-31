@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant B2C
+==商品估价==
+B2C -> HunterValuation: 1.调用判断是否拦截、查询参考起拍价接口哈哈哈
+activate HunterValuation
+HunterValuation -> Hunterpub: 2.调用映射接口,传参omsSkuId
+activate Hunterpub
+return 3.返回采货侠标准发布项,及该商品的卖场类型,若被拦截,返回拦截原因
+HunterValuation ->  HunterValuation: 4.根据采货侠标准发布项,得到起拍价和预估成交价
+HunterValuation ->  HunterValuation: 5.根据apollo配置的策略,计算得到价格系统起拍价和预估成交价
+return 6.返回起拍价和预估成交价
+||29||
+==商品发布==
+B2C ->  Hunterpub:  1.调用商品发布接口
+activate Hunterpub
+Hunterpub ->  HunterValuation:  2.调用定价接口,参数采货侠标准发布项和B2C的起拍价
+activate HunterValuation
+HunterValuation ->  HunterValuation: 3.根据采货侠标准发布项,得到起拍价和预估成交价
+HunterValuation ->  HunterValuation: 4.根据apollo配置的策略,计算得到价格系统起拍价和预估成交价(记录询价数据做数据分析)
+return  5.返回最终卖场起拍价,若因价格过高被拦截,返回价格系统最新起拍价和预估成交价
+Hunterpub ->  商品: 6.调用发布接口
+Hunterpub ->  Hunterpub:7.发送供给侧商品发布记录的MQ
+return 8.参拍成功
+HunterValuation ->  Hunterpub: 9.监听供给侧商品发布记录的MQ
+activate HunterValuation
+HunterValuation ->  HunterValuation:10.根据omsSkuId,供给侧商品id,卖场商品id做关联(更新询价数据做数据分析)
+HunterValuation ->  Ypofflinemart: 11.监听卖场支付成功MQ
+HunterValuation ->  HunterValuation:12.根据卖场商品id做关联(更新询价数据做数据分析)
+deactivate HunterValuation
+||29||
+==商品改价==
+B2C ->  Hunterpub:  1.调用商品改价接口
+activate Hunterpub
+Hunterpub ->  HunterValuation:  2.调用定价接口,参数omsSkuId和B2C的起拍价
+activate HunterValuation
+HunterValuation ->  HunterValuation: 3.根据omsSkuId查询对应的发布结果码,得到起拍价和预估成交价
+HunterValuation ->  HunterValuation: 4.根据apollo配置的策略,计算得到价格系统起拍价和预估成交价
+return  5.返回最终卖场起拍价,若因价格过高被拦截,返回价格系统最新起拍价和预估成交价
+@enduml

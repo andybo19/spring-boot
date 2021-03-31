@@ -96,6 +96,30 @@ public class LinkedListDemo {
 
     }
 
+
+    //链表反转II 92
+    public static ListNode reverseListNodeSecond(ListNode head,int left,int right){
+        ListNode sentinel = new ListNode(0);
+        sentinel.next = head;
+
+        ListNode g = sentinel;
+        ListNode p = sentinel.next;
+
+        for(int i= 0; i < left - 1;i++){
+            g = g.next; p=p.next;
+        }
+
+        for(int i = 0; i< right - left;i++){
+            ListNode removed =  p.next;
+            p.next = p.next.next;
+
+            removed.next = g.next;
+            g.next = removed;
+        }
+        return sentinel.next;
+
+    }
+
     //链表有环判断 141
     public static boolean hasCycle(ListNode head){
         if(head == null || head.next == null){

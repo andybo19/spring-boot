@@ -15,4 +15,6 @@ public interface IUserService {
 
     Integer insert(User user);
 
+    User findByName(String name);
+
 }

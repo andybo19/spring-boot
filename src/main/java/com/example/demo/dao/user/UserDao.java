@@ -13,6 +13,9 @@ public interface UserDao {
     @Select("SELECT * from `t_user`  where mobile_number = #{mobile}")
     User findByMobile(String mobile);
 
+    @Select("SELECT * from `t_user`  where user_name = #{name}")
+    User findByName(String name);
+
     @Insert("INSERT INTO `t_user` (`user_name`, `mobile_number`) VALUES ( #{userName}, #{mobileNumber})")
     int insert(User user);
 

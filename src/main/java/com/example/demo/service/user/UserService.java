@@ -26,6 +26,11 @@ public class UserService implements IUserService{
     }
 
     @Override
+    public User findByName(String name) {
+        return userDao.findByName(name);
+    }
+
+    @Override
     @Transactional
     public void doNeedTx() {
         String result = this.toString();

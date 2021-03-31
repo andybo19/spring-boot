@@ -1,7 +1,7 @@
 package com.example.demo.basisStudy;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author mayongbo
@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConMap {
 
     public static void main(String[] args) {
-        System.out.println("方法开始");
+        /*System.out.println("方法开始");
         Map<String, Integer> map = new ConcurrentHashMap<>(16);
         map.computeIfAbsent(
                 "AaAa",
@@ -21,7 +21,15 @@ public class ConMap {
                             key2 -> 42);
                 }
         );
-        System.out.println("方法结束 map = "+map);
+        System.out.println("方法结束 map = "+map);*/
+        test();
     }
 
+
+    public static void test(){
+        Map<Integer,String> map=new HashMap<>(1000);
+        for(int i=1;i<=1000;i++){
+            map.put(i,String.valueOf(i));
+        }
+    }
 }
