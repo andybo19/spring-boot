@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+activate target目标类
+target目标类 -> TransactionInterceptor: invoke@Transactional注解的方法
+activate TransactionInterceptor
+TransactionInterceptor -> TransactionAspectSupport: invokeWithinTransaction
+activate TransactionAspectSupport
+TransactionAspectSupport -> AbstractFallbackTransactionAttributeSource: getTransactionAttribute获取事务配置信息
+activate AbstractFallbackTransactionAttributeSource
+AbstractFallbackTransactionAttributeSource -> AbstractFallbackTransactionAttributeSource: computeTransactionAttribute获取注解上配置的事务信息
+AbstractFallbackTransactionAttributeSource -> TransactionAspectSupport: 返回事务配置信息TransactionAttribute
+deactivate AbstractFallbackTransactionAttributeSource
+TransactionAspectSupport -> TransactionAspectSupport: determineTransactionManager获取事务管理器PlatformTransactionManager
+TransactionAspectSupport -> TransactionAspectSupport: methodIdentification获取方法连接点识别信息joinpointIdentification
+TransactionAspectSupport -> AbstractPlatformTransactionManager: createTransactionIfNecessary创建事务,调用getTransaction
+activate AbstractPlatformTransactionManager
+AbstractPlatformTransactionManager -> DataSourceTransactionManager: doGetTransaction
+activate DataSourceTransactionManager
+DataSourceTransactionManager -> DataSourceTransactionManager: new DataSourceTransactionObject()创建一个事务对象
+DataSourceTransactionManager -> DataSourceTransactionManager: 从事务同步管理器中获取的此dataSource对应的ConnectionHolder,并关联到事务对象中
+note right
+事务同步管理器中定义了一个ThreadLocal,用来保存dataSource 和 ConnectionHolder的对应关系
+ThreadLocal<Map<Object, Object>> resources =
+			new NamedThreadLocal<Map<Object, Object>>("Transactional resources");
+end note
+DataSourceTransactionManager -> AbstractPlatformTransactionManager:返回事务对象transaction
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager:校验事务对象是否存在
+note right
+transaction关联的ConnectionHolder不为null,并且ConnectionHolder中的事务状态是活跃的,则判定事务对象存在
+如果事务已经存在：
+1、如果此时事务传播特性是NEVER，则抛出异常。
+2、如果此时事务的传播特性是NOT_SUPPORTED，则调用suspend(transaction)挂起当前事务，将被挂起的资源suspendedResources放入事务状态里。
+3、如果此时事务状态是REQUIRES_NEW，则调用suspend(transaction)挂起当前事务，将事务对象transaction和被挂起的资源suspendedResources放入事务状态里。然后调用doBegin(transaction, definition)方法去真正打开事务。最后调用prepareSynchronization(status, definition)方法准备一下事务同步。
+4、如果此时事务的传播特性是NESTED，又分三种情况：
+4.1、如果不允许嵌套事务，直接抛出异常。
+4.2、如果使用保存点（Savepoint）来实现嵌套事务，那直接使用当前事务，创建一个保存点就可以了。
+4.3、如果使用新的事务来实现嵌套事务，那就调用doBegin(transaction, definition)开启新的事务，此时不需要挂起当前事务。
+5、对于剩下三种传播特性REQUIRED/MANDATORY/SUPPORTS，则不需要创建新事务，直接使用当前事务就可以了。
+end note
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager:校验配置的事务超时时间
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager:校验事务传播行为,若是PROPAGATION_MANDATORY,则抛异常
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager:若事务传播行为是PROPAGATION_REQUIRED,PROPAGATION_REQUIRES_NEW,PROPAGATION_REQUIRES_NEW
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager:若事务传播行为是PROPAGATION_REQUIRED,PROPAGATION_REQUIRES_NEW,PROPAGATION_REQUIRES_NEW
+AbstractPlatformTransactionManager -> DataSourceTransactionManager:开启事务
+note right
+new newTransactionStatus()创建一个事务上下文,包含事务对象,以及事务的状态
+doBegin开启事务
+1.如果逻辑事务没有和一个物理资源相关联，或这个物理资源还没有和一个事务同步
+此时新建一个数据库链接，并把这个链接包装到一个ConnectionHolder里。并设置给事务对象。
+2.接下来将这个物理资源ConnectionHolder标记为已同步一个事务。
+3.然后将数据库链接设置为非自动提交
+4.最后把DataSource和ConnectionHolder绑定到当前线程
+end note
+deactivate DataSourceTransactionManager
+AbstractPlatformTransactionManager -> TransactionAspectSupport: 返回事务上下文TransactionStatus
+TransactionAspectSupport -> TransactionAspectSupport: 将事务上下文TransactionStatus关联到标准事务信息TransactionInfo
+TransactionAspectSupport -> target目标类: 调用目标类具体的方法,获取结果
+TransactionAspectSupport -> TransactionAspectSupport: target目标类方法执行正常,则提交事务,返回结果
+TransactionAspectSupport -> TransactionAspectSupport: target目标类方法执行异常,则回滚事务,抛出异常
+TransactionAspectSupport -> TransactionInterceptor: 返回结果
+deactivate TransactionAspectSupport
+TransactionInterceptor -> target目标类: 返回结果
+deactivate TransactionInterceptor
+deactivate target目标类
+@enduml

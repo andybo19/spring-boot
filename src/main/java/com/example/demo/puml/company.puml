@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:1.查询影投票房实时表得到影投编号;
+:2.组装任务实体,保存任务记录,并发送任务创建的消息;
+note right
+    1.SELECT city_id FROM gw_ads_area_show_boxoffice_prod
+    WHERE show_date >= #{showDate} and city_id = -5
+    group by company_code, city_id
+    影投只做全国数据
+end note
+:3.监听任务创建的消息,查询票房实时表;
+:4.保存影投快照,更新任务状态,发送任务同步消息;
+:5.监听任务同步消息,同步影投快照到其他环境;
+stop
+
+@enduml

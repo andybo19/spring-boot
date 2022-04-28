@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:定时任务开始;
+:获取所有年份有效(可播放)榜单数据;
+note right
+    1.请求agravity服务获取榜单数据
+    2.排除数仓数据,5号之前不计算榜单
+    3.获取播放状态的videoId
+    4.重置播放量
+    5.设置是否可播放video
+end note
+:过滤可播放的榜单数据;
+:根据榜单类型和年份重排序和缓存榜单数据;
+note right
+1.根据榜单类型和年份过滤数据
+2.按照年份、月份、视频类型、榜单类型分组
+3.根据分组数据,按照榜单类型rate从大到小排序
+4.截取数据,只取top10的数据
+5.重置排序字段(给前端用)
+6.以年份和榜单类型为key,缓存数据
+end note
+stop
+
+@enduml

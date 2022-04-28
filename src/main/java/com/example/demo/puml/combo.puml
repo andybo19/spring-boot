@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+mtop -> ComboServerFilter: HSF Invocation
+activate ComboServerFilter
+ComboServerFilter -> ComboServerFilter: HSF系统级别拦截器拦截(限流、入口、搭建页面路由)
+ComboServerFilter -> ComboHandleImpl: HSF invoke
+activate ComboHandleImpl
+ComboHandleImpl -> ComboAroundInvocationHandlerManager: 获取ComboAroundInvocation集合
+activate ComboAroundInvocationHandlerManager
+ComboAroundInvocationHandlerManager -> ComboAroundInvocationHandlerManager: 从Spring容器中取ComboAroundInvocation
+ComboAroundInvocationHandlerManager -> ComboHandleImpl: 返回ComboAroundInvocation集合
+deactivate ComboAroundInvocationHandlerManager
+ComboHandleImpl -> ComboHandleImpl: 选取状态可用的ComboAroundInvocation
+ComboHandleImpl -> ComboHandleImpl: 通过HSFComboRequest构建ComboInvocationContext
+ComboHandleImpl -> ComboAroundInvocation: 调用before对ComboInvocationContext前置处理
+ComboHandleImpl -> PatternConfigManager: 通过HSFComboRequest获取页面配置模型
+activate PatternConfigManager
+PatternConfigManager -> PatternConfigManager: 尝试本地获取页面配置模型,若有直接返回
+PatternConfigManager -> tarot服务: 调用layoutService获取Pattern
+activate tarot服务
+tarot服务 -> PatternConfigManager: 返回Pattern
+deactivate tarot服务
+PatternConfigManager -> PatternConfigManager: 根据HSFComboRequest自定义加载规则和AB规则,过滤Pattern中的Section
+PatternConfigManager -> ComboHandleImpl: 返回Pattern
+deactivate PatternConfigManager
+ComboHandleImpl -> DSRequestWrapper: 通过HSFComboRequest、Pattern构建组件请求上下文ComboDSHandlerContext
+activate DSRequestWrapper
+DSRequestWrapper -> DSRequestWrapper: 将楼层关联的数据源DataSource,包装成ActionDataSource
+DSRequestWrapper -> DSRequestWrapper: 根据HSFComboRequest和ActionDataSource组找到具体对应的处理handler及请求参数转换,组合成ComboDSHandlerContext
+DSRequestWrapper -> ComboHandleImpl: 返回ComboDSHandlerContext集合
+deactivate DSRequestWrapper
+ComboHandleImpl -> ComboHandleImpl: 根据ComboDSHandlerContext数量构建CountDownLatch
+ComboHandleImpl -> ComboHandleImpl: 将ComboDSHandlerContext封装成HandlerCallTask,放到线程池执行
+activate HandlerCallTask
+HandlerCallTask -> HandlerCallTask: 将ComboDSHandlerContext中的请求参数取出来
+HandlerCallTask -> HandlerCallTask: 将ComboDSHandlerContext中的handler取出来
+HandlerCallTask -> HandlerCallTask: 执行handler invoke方法拿到结果
+HandlerCallTask -> HandlerCallTask: 将结果放入ComboDSHandlerContext中,调用latch.countDown();
+deactivate HandlerCallTask
+ComboHandleImpl -> ComboHandleImpl: latch await(timeout, TimeUnit.MILLISECONDS)限时等待处理结果
+ComboHandleImpl -> ComboHandleImpl: 构建楼层结果,组装楼层,搭建页面对端输出
+ComboHandleImpl -> ComboServerFilter: HSF系统级别回调管理
+deactivate ComboHandleImpl
+ComboServerFilter-> mtop: 返回最终结果
+deactivate ComboServerFilter
+@enduml

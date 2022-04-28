@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:1.点击筛选对应的tab;
+:2.根据tab的时间范围查询对应的影片;
+note right
+    1.查询gw_ads_media_info表
+    2.open_time在对应的时间范围
+    3.open_time的长度 = 10
+    4.media_type_id = 0
+    5.open_china = 1
+    6.热映影片要查询当日有票房
+end note
+:3.根据步骤2查询出的影片id查询热搜统计表;
+note right
+1.根据前端传入的排序方式排序
+2.默认按照话题数倒序
+3.取top 30
+end note
+:4.根据步骤3查询出的影片id查询热搜关键词匹配表;
+note right
+1.查询每个影片最高排名记录
+2.查询每个影片有无正在热搜中的话题
+end note
+:5.组装数据返回;
+stop
+
+@enduml

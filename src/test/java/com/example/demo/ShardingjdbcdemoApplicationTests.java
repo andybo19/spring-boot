@@ -3,9 +3,13 @@ package com.example.demo;
 import com.example.demo.dao.user.DictDao;
 import com.example.demo.dao.user.GoodsDao;
 import com.example.demo.dao.user.UserDao;
+import com.example.demo.designpatterns.strategy.Strategy;
+import com.example.demo.designpatterns.strategy.StrategyContext;
 import com.example.demo.domain.Goods;
 import com.example.demo.domain.MyDict;
 import com.example.demo.domain.User;
+import com.example.demo.enums.SnapshotTaskEnum;
+import com.example.demo.service.user.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,9 @@ public class ShardingjdbcdemoApplicationTests {
 
     @Autowired
     private DictDao dictDao;
+
+    @Autowired
+    private IUserService userService;
 
     @Test
     public void addGoods() {
@@ -61,8 +68,9 @@ public class ShardingjdbcdemoApplicationTests {
     @Test
     public void addUser() {
         User user = new User();
-        user.setUserName("andy");
+        user.setUserName("mayongbo");
         user.setMobileNumber("15136456879");
+        user.setAge("29");
         userDao.insert(user);
     }
 
@@ -90,6 +98,12 @@ public class ShardingjdbcdemoApplicationTests {
     public void getUser() {
         User user = userDao.findByMobile("15136456879");
         System.out.println("+++++++++++++++"+user);
+    }
+
+    @Test
+    public void testStrategy(){
+        Strategy strategy = StrategyContext.getStrategy(SnapshotTaskEnum.WAIMAI.name());
+        strategy.issue(new Object());
     }
 
 

@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor 用户
+用户 -> aquantum: 查看演出详情页
+activate aquantum
+aquantum -> 机器猫: 页面类型、版本号
+activate 机器猫
+机器猫 -> aquantum: 按照页面配置的数据源,并行取数据
+activate aquantum
+aquantum -> mppublicity: rpc调用取对应数据
+note left
+1.头部信息
+2.票房数据
+3.票价数据
+4.演出信息
+end note
+activate mppublicity
+mppublicity -> aquantum:返回数据
+deactivate mppublicity
+aquantum -> 机器猫: 返回数据
+deactivate aquantum
+机器猫 -> aquantum: 返回组装数据
+deactivate 机器猫
+aquantum -> 用户: 返回详情页数据
+deactivate aquantum
+@enduml

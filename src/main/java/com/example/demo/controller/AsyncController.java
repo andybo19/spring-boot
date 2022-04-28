@@ -79,7 +79,11 @@ public class AsyncController {
     }
 
     User getUser(String name){
-        return userService.findByName(name);
+        User user = new User();
+        user.setUserName("andy");
+        user.setMobileNumber("123");
+        return user;
+        //return userService.findByName(name);
     }
 
 

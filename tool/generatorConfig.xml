@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="/Users/mayongbo/mavenrepository/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar"/>
+    <context id="lark-itemmgr">
+
+        <commentGenerator>
+            <!--<property name="suppressAllComments" value="true" />-->
+            <property name="suppressDate" value="true" />
+            <property name="addRemarkComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/testindex" userId="root"
+                        password="admin123">
+        <property name="nullCatalogMeansCurrent" value="true" />
+    </jdbcConnection>
+
+    <javaTypeResolver>
+        <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.alibaba.movie.entity"
+                            targetProject="tool/gen">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="tool/gen">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.alibaba.movie.dao"
+                             targetProject="tool/gen">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--
+        <table tableName="cinema_chain_daily_statistics" domainObjectName="CinemaChainDailyStatisticsDO"
+               mapperName="CinemaChainDailyStatisticsDAO"
+               enableCountByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false">
+        </table>
+
+
+                <table tableName="area_film_statistics" domainObjectName="AreaFilmStatisticsDO"
+                       mapperName="AreaFilmStatisticsDAO"
+                       enableCountByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" enableDeleteByExample="false">
+                </table>
+
+
+                        <table tableName="cinema_chain_film_sum_statistics" domainObjectName="CinemaChainFilmSumStatisticsDO"
+                               mapperName="CinemaChainFilmSumStatisticsDAO"
+                               enableCountByExample="false" enableSelectByExample="false"
+                               enableUpdateByExample="false" enableDeleteByExample="false">
+                        </table>
+
+        <table tableName="area_statistics_snapshot" domainObjectName="AreaStatisticsSnapshotDO"
+               mapperName="AreaStatisticsSnapshotDAO"
+               enableCountByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false">
+        </table>
+-->
+
+
+                                <table tableName="gw_ads_company_show_boxoffice" domainObjectName="GwAdsCompanyShowBoxofficeDO"
+                                       mapperName="GwAdsCompanyShowBoxofficeDAO"
+                                       enableCountByExample="false" enableSelectByExample="false"
+                                       enableUpdateByExample="false" enableDeleteByExample="false">
+                                </table>
+                                <table tableName="gw_ads_company_show_boxoffice_snapshot" domainObjectName="GwAdsCompanyShowBoxofficeSnapshotDO"
+                                       mapperName="GwAdsCompanyShowBoxofficeSnapshotDAO"
+                                       enableCountByExample="false" enableSelectByExample="false"
+                                       enableUpdateByExample="false" enableDeleteByExample="false">
+                                </table>
+        <!--
+                                        <table tableName="film_weekly_statistics" domainObjectName="FilmWeeklyStatisticsDO"
+                                               mapperName="FilmWeeklyStatisticsDAO"
+                                               enableCountByExample="false" enableSelectByExample="false"
+                                               enableUpdateByExample="false" enableDeleteByExample="false">
+                                        </table>
+
+                                        <table tableName="film_monthly_statistics" domainObjectName="FilmMonthlyStatisticsDO"
+                                               mapperName="FilmMonthlyStatisticsDAO"
+                                               enableCountByExample="false" enableSelectByExample="false"
+                                               enableUpdateByExample="false" enableDeleteByExample="false">
+                                        </table>
+
+                                        <table tableName="film_yearly_statistics" domainObjectName="FilmYearlyStatisticsDO"
+                                               mapperName="FilmYearlyStatisticsDAO"
+                                               enableCountByExample="false" enableSelectByExample="false"
+                                               enableUpdateByExample="false" enableDeleteByExample="false">
+                                        </table>
+
+
+                <table tableName="film_daily_increment_statistics" domainObjectName="FilmDailyIncrementStatisticsDO"
+                       mapperName="FilmDailyIncrementStatisticsDAO"
+                       enableCountByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" enableDeleteByExample="false">
+                </table>
+        -->
+                <!--<table tableName="film_daily_realtime_statistics" domainObjectName="FilmDailyRealtimeStatisticsDO"
+                       mapperName="FilmDailyRealtimeStatisticsDAO"
+                       enableCountByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" enableDeleteByExample="false">
+                </table>-->
+        <!--
+
+                <table tableName="overall_daily_statistics" domainObjectName="OverallDailyStatisticsDO"
+                       mapperName="OverallDailyStatisticsDAO"
+                       enableCountByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" enableDeleteByExample="false">
+                </table>
+
+
+                <table tableName="overall_daily_realtime_statistics" domainObjectName="OverallDailyRealtimeStatisticsDO"
+                       mapperName="OverallDailyRealtimeStatisticsDAO"
+                       enableCountByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" enableDeleteByExample="false">
+                </table>
+
+
+                <table tableName="overall_increment_statistics" domainObjectName="OverallIncrementStatisticsDO"
+                       mapperName="OverallIncrementStatisticsDAO"
+                       enableCountByExample="false" enableSelectByExample="false"
+                       enableUpdateByExample="false" enableDeleteByExample="false">
+                </table>
+        -->
+    </context>
+</generatorConfiguration>

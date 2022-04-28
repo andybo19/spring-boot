@@ -16,7 +16,7 @@ public interface UserDao {
     @Select("SELECT * from `t_user`  where user_name = #{name}")
     User findByName(String name);
 
-    @Insert("INSERT INTO `t_user` (`user_name`, `mobile_number`) VALUES ( #{userName}, #{mobileNumber})")
+    @Insert("INSERT INTO `t_user` (`user_name`, `mobile_number`, `age`) VALUES ( #{userName}, #{mobileNumber}, #{age})")
     int insert(User user);
 
     @UpdateProvider(type = UserDaoSql.class,method = "updateSql")

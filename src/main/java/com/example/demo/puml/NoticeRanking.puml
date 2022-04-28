@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor 用户
+用户 -> aquantum: 选定筛选条件
+activate aquantum
+aquantum -> aquantum: 参数校验,排序类型rankingTypeCode必传
+aquantum -> tfstudio: 根据筛选条件,查询预告片排行榜
+activate tfstudio
+tfstudio -> tfstudio: 根据year和rankingTypeCode,得到cacheKey
+tfstudio -> tair: 根据cacheKey,获取榜单数据
+activate tair
+tair -> tfstudio: 返回榜单json数据
+deactivate tair
+tfstudio -> tfstudio: 对缓存数据按照筛选条件过滤
+loop 缓存数据
+tfstudio -> hawaii: 根据影片id和视频id查询影片视频信息
+activate hawaii
+hawaii -> tfstudio: 返回影片视频信息
+deactivate hawaii
+tfstudio -> tfmedia: 根据extVideoId查询视频信息
+activate tfmedia
+tfmedia -> tfstudio: 返回视频信息
+deactivate tfmedia
+tfstudio -> tfstudio: 组装数据
+end
+tfstudio -> aquantum: 返回数据
+aquantum -> aquantum: 排行榜数据放入缓存,设置过期时间31s
+aquantum -> aquantum: 数据转换并设置更新时间
+aquantum -> 用户: 返回最终榜单数据
+@enduml
