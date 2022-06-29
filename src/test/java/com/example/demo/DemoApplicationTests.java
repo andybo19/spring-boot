@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.dao.user.UserDao;
+import com.example.demo.designpatterns.template.Tea;
 import com.example.demo.domain.InvoiceIssueRecordDO;
 import com.example.demo.domain.User;
 import com.example.demo.service.InvoiceIssueRecord.IInvoiceIssueRecordService;
@@ -42,6 +43,9 @@ public class DemoApplicationTests {
 	@Autowired
 	private IInvoiceIssueRecordService iInvoiceIssueRecordService;
 
+	@Autowired
+	private Tea tea;
+
 
 
 	@Test
@@ -54,6 +58,11 @@ public class DemoApplicationTests {
 		System.out.println("____________________________________");
 /*		List<User> users = userDao.getList("1", PageBounds.page(4,3));
 		System.out.println("+++++++++++++结果"+users);*/
+	}
+
+	@Test
+	public void testTemplate(){
+		tea.prepareBeverageTemplate();
 	}
 
 

@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <classPathEntry location="/Users/mayongbo/mavenrepository/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar"/>
-    <context id="lark-itemmgr">
+    <context id="lark-itemmgr" targetRuntime="Mybatis3Simple">
 
         <commentGenerator>
             <!--<property name="suppressAllComments" value="true" />-->
@@ -19,7 +19,7 @@
     <javaTypeResolver>
         <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.alibaba.movie.entity"
+        <javaModelGenerator targetPackage="com.alibaba.pictures.powergem.repository.entity"
                             targetProject="tool/gen">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -31,7 +31,7 @@
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.alibaba.movie.dao"
+                             targetPackage="com.alibaba.pictures.powergem.repository.dao"
                              targetProject="tool/gen">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
@@ -65,16 +65,16 @@
 -->
 
 
-                                <table tableName="gw_ads_company_show_boxoffice" domainObjectName="GwAdsCompanyShowBoxofficeDO"
-                                       mapperName="GwAdsCompanyShowBoxofficeDAO"
+                                <table tableName="biz_channel_account_fans_info" domainObjectName="BizChannelAccountFansInfoDO"
+                                       mapperName="BizChannelAccountFansInfoDAO"
                                        enableCountByExample="false" enableSelectByExample="false"
                                        enableUpdateByExample="false" enableDeleteByExample="false">
                                 </table>
-                                <table tableName="gw_ads_company_show_boxoffice_snapshot" domainObjectName="GwAdsCompanyShowBoxofficeSnapshotDO"
+<!--                                <table tableName="gw_ads_company_show_boxoffice_snapshot" domainObjectName="GwAdsCompanyShowBoxofficeSnapshotDO"
                                        mapperName="GwAdsCompanyShowBoxofficeSnapshotDAO"
                                        enableCountByExample="false" enableSelectByExample="false"
                                        enableUpdateByExample="false" enableDeleteByExample="false">
-                                </table>
+                                </table>-->
         <!--
                                         <table tableName="film_weekly_statistics" domainObjectName="FilmWeeklyStatisticsDO"
                                                mapperName="FilmWeeklyStatisticsDAO"

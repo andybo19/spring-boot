@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="aplus-waiting" content="MAN" />
+    <meta name="data-spm" content="a2obg" data-spm-protocol="i" />
+    <meta name="aplus-vt-cfg" content="1" />
+    <meta name="aplus-exinfo" content="EXPARAMS" />
+    <title>灯塔-宣发服务平台</title>
+    <!-- <link type="text/css" href="//dev.g.alicdn.com/alipic/beacon/12.1.3/css/app.css" rel="stylesheet" /> -->
+    <link rel="dns-prefetch" href="//dev.g.alicdn.com/alipic/beacon/12.1.3" />
+    <link rel="preload" href="//dev.g.alicdn.com/alipic/beacon/12.1.3/media/DINCondensed.ttf" as="font" />
+    <link
+            rel="icon"
+            href="//img.alicdn.com/tfs/TB1ou9njVOWBuNjy0FiXXXFxVXa-128-128.png"
+    />
+    <link
+            rel="shortcut icon"
+            href="//img.alicdn.com/tfs/TB1ou9njVOWBuNjy0FiXXXFxVXa-128-128.png"
+    />
+    <style type="text/css">
+        @font-face {
+            font-family: DINCondensed;
+            src: url('//dev.g.alicdn.com/alipic/beacon/12.1.3/media/DINCondensed.ttf');
+        }
+        @font-face {
+            font-family: CenturyGothic-Bold;
+            src: url('//dev.g.alicdn.com/alipic/beacon/12.1.3/media/CenturyGothic-Bold.ttf');
+        }
+    </style>
+    <script src="https://g.alicdn.com/alilog/aplus_cplugin/0.6.3/aplus_udata.js"></script>
+</head>
+
+<body data-spm="11769358"><script>
+    with(document)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("exparams","category=&userid=&aplus&yunid=&&trid=0bb4820416445498719168401ed443&asid=AQAAAADv1gViLUuGSgAAAAAOwZlGtyKXMg==",id="tb-beacon-aplus",src=(location>"https"?"//g":"//g")+".alicdn.com/alilog/mlog/aplus_v2.js")
+</script>
+
+<script>
+    window.__bl = {
+        config: {
+            pid:"ixni88g9n5@e7ea168cc065b47",
+            appType:"web",
+            imgUrl:"https://arms-retcode.aliyuncs.com/r.png?",
+            sendResource:true,
+            enableLinkTrace:true,
+            behavior:true,
+            disableHook:true,
+            useFmp:true,
+            enableConsole:true,
+            environment:'pre',
+            release: '12.1.3',
+            disabled: true,
+            setUsername: function () {
+                var userId = null;
+                var realName = null;
+                try {
+                    var tppBeacon = localStorage.getItem('tpp-beacon') || '{}';
+                    var beaconInfo = JSON.parse(tppBeacon);
+                    userId = beaconInfo.userId;
+                    realName = beaconInfo.realName;
+                } catch (error) {
+                    console.log(error);
+                }
+                return userId ? (userId + '_' + realName) : null;
+            }
+        }
+    }
+
+    window.upgradePrompt = "";
+    window.otherConfig = {};
+</script>
+<script
+        type="text/javascript"
+        src="https://retcode.alicdn.com/retcode/bl.js"
+        crossorigin
+></script>
+
+<div id="beacon_dialog"></div>
+<div id="root"></div>
+<script type="text/javascript">
+    !function (o) {
+        o.YLB_CONFIG = {};
+        o.YLB_CONFIG['assets'] = '//dev.g.alicdn.com/alipic/beacon/12.1.3/';
+        o.YLB_CONFIG['test'] = 'test';
+        o.BEACON_CONFIG = {};
+        o.BEACON_CONFIG.isShowPopcorn = true;
+        o.BEACON_CONFIG.isWordUniqueRate = true;
+        o.BEACON_CONFIG.sampleRate = {
+            jsError: 1,
+            interface: 1,
+            performance: 1
+        };
+        o.BEACON_CONFIG.errorWhiteList = [
+            'ABORT::接口异常退出',
+            'TIMEOUT::接口超时',
+            'FAIL_SYS_BIZPARAM_MISSED::缺少业务参数token',
+            'FAIL_SYS_TOKEN_EXOIRED::令牌过期',
+            70015,
+            70027,
+            70023,
+            70019,
+            84002,
+            5009,
+            70024,
+            70018,
+            70020,
+            -804,
+            82002,
+            82005,
+            70030,
+            70033,
+            5011
+        ];
+        o.BEACON_CONFIG.flag = true;
+        o.BEACON_CONFIG.version = '12.1.3';
+        o.BEACON_CONFIG.env = 'pre'
+    }(window);
+</script>
+<script>
+    // export default CUSTOM_GLODLOG;
+    var CG = function (options) {
+        try {
+            this.queue = [];
+            this.initOptions(options || {});
+            this.setWatchkeys();
+            this.initQueue();
+            this.initMeta();
+            this.hijacking();
+        } catch (error) {
+            console.log('new过程中出错', error);
+        }
+    };
+    CG.fn = CG.prototype;
+    CG.fn.initOptions = function (options) {
+        this.options = options || {};
+    };
+
+    // 设置监控字段
+    CG.fn.setWatchkeys = function (updateKeys) {
+        var keys = updateKeys || this.options.keys;
+        if (!keys) {
+            this.watchKeys = [];
+        }
+        if (this._type(keys) === 'String') {
+            this.watchKeys = [keys];
+        }
+        if (this._type(keys) === 'Array') {
+            this.watchKeys = keys;
+        }
+    };
+    CG.fn.initQueue = function () {
+        window.goldlog = window.goldlog || {};
+        window.goldlog_queue = window.goldlog_queue || [];
+    };
+    CG.fn.initMeta = function () {
+        if (!document.querySelector("[content='EXPARAMS']")) {
+            var meta = document.createElement('meta');
+            meta.setAttribute('name', 'aplus-exinfo');
+            meta.setAttribute('content', 'EXPARAMS');
+            document.head.appendChild(meta);
+        }
+    };
+    CG.fn.hijacking = function () {
+        this.hijackingFn('setPageSPM');
+        this.hijackingFn('sendPV');
+        this.hijackingFn('record');
+    };
+
+    CG.fn._type = function (params) {
+        return Object.prototype.toString.call(params).slice(8, -1);
+    };
+    CG.fn.getExparams = function () {
+        var instance = this.getInstance();
+        var exparams = instance
+            .getAttribute('exparams')
+            .split('&')
+            .filter(function (item) {
+                return item;
+            })
+            .map(function (item) {
+                var index = item.indexOf('=');
+                var key = item.substring(0, index);
+                var value = item.substring(index + 1);
+                var obj = {};
+                if (key) {
+                    obj[key] = value || '';
+                }
+                if (!key && value) {
+                    obj[value] = '';
+                }
+                return obj;
+            })
+            .reduce(function (pre, next) {
+                for (var i in next) {
+                    pre[i] = next[i];
+                }
+                return pre;
+            }, {});
+        return exparams || {};
+    };
+    CG.fn.setExparams = function (commonParams) {
+        var exparams = this.getExparams();
+        var instance = this.getInstance();
+        for (var i in commonParams) {
+            exparams[i] = commonParams[i];
+        }
+        instance.setAttribute('exparams', this.paramsToString(exparams));
+        this.fire();
+    };
+    CG.fn.deleteExparam = function (key) {
+        var exparams = this.getExparams();
+        var instance = this.getInstance();
+        delete exparams[key];
+        instance.setAttribute('exparams', this.paramsToString(exparams));
+    };
+    CG.fn.getInstance = (function () {
+        var instance = null;
+        return function () {
+            if (!instance) {
+                instance = document.getElementById('tb-beacon-aplus');
+            }
+            return instance;
+        };
+    })();
+
+    CG.fn.validateWatchKeys = function () {
+        var exparams = this.getExparams();
+        var bool = true;
+        if (!this.watchKeys.length) {
+            return bool;
+        }
+        this.watchKeys.forEach(function (item) {
+            if (!exparams[item]) {
+                bool = false;
+            }
+        });
+        return bool;
+    };
+
+    CG.fn.hijackingFn = function (key) {
+        var _this = this;
+        if (!window.goldlog[key]) {
+            var _fn = function () {
+                _this.queue.push({
+                    key,
+                    params: arguments,
+                });
+            };
+            Object.defineProperty(window.goldlog, key, {
+                set(fn) {
+                    _fn = function () {
+                        if (!_this.validateWatchKeys()) {
+                            _this.queue.push({
+                                key,
+                                params: arguments,
+                            });
+                            return false;
+                        }
+                        var params = arguments;
+                        if (key === 'record') {
+                            params = _this.appendSpmToParams(arguments);
+                        }
+                        fn.apply(window.goldlog, params);
+                    };
+                    _this.fire(key);
+                },
+                get() {
+                    return _fn;
+                },
+            });
+        } else {
+            var _fn = window.goldlog[key];
+            window.goldlog[key] = function () {
+                if (!_this.validateWatchKeys()) {
+                    _this.queue.push({
+                        key,
+                        params: arguments,
+                    });
+                    return false;
+                }
+                var params = arguments;
+                if (key === 'record') {
+                    params = _this.appendSpmToParams(arguments);
+                }
+                _fn.apply(window.goldlog, params);
+            };
+        }
+    };
+    CG.fn.appendSpmToParams = function (args) {
+        var spm = window.goldlog._$.spm;
+        var _params = this.stringToParams(args[2]);
+        _params['spm-cnt'] = spm.spm_cnt;
+        _params['spm-pre'] = spm.spm_pre;
+        _params['spm-url'] = spm.spm_url;
+        args[2] = this.paramsToString(_params);
+        return args;
+    };
+
+    CG.fn.paramsToString = function (params) {
+        var str = '';
+        for (var key in params) {
+            str += `&${key}=${params[key].toString()}`;
+        }
+        if (/^&/.test(str)) str = str.slice(1);
+        return str;
+    };
+    CG.fn.stringToParams = function (string) {
+        var arr = string.split('&');
+        var params = arr
+            .map(function (item) {
+                var obj = {};
+                var index = item.indexOf('=');
+                var key = item.substring(0, index);
+                var value = item.substring(index + 1);
+                obj[key] = value;
+                return obj;
+            })
+            .reduce(function (pre, next) {
+                for (var i in next) {
+                    pre[i] = next[i];
+                }
+                return pre;
+            }, {});
+        return params;
+    };
+    CG.fn.fire = function () {
+        var _this = this;
+        setTimeout(function () {
+            if (_this.queue.length) {
+                _this.queue.forEach(function (item, index) {
+                    if (_this.validateWatchKeys()) {
+                        if (item.key === 'record') {
+                            item.params = _this.appendSpmToParams(item.params);
+                        }
+                        window.goldlog[item.key].apply(window.goldlog, item.params);
+                        _this.queue.splice(index, 1, undefined);
+                    }
+                });
+                _this.queue = _this.queue.filter(function (item) {
+                    return item;
+                });
+            }
+        }, 0);
+    };
+
+    var beacon_custom_glodlog = new CG({
+        keys: [],
+    });
+
+    var updataWatchkeys = function (pathname) {
+        var user = ['beacon_user_id'];
+        var userWithShowId = ['beacon_user_id', 'show_id'];
+        if (pathname === '/' || pathname === '/login') {
+            beacon_custom_glodlog.setWatchkeys([]);
+            return false;
+        }
+        if (pathname === '/monitor') {
+            beacon_custom_glodlog.setWatchkeys([
+                'beacon_user_id',
+                'show_id',
+                'order_no',
+            ]);
+            return false;
+        }
+        if (pathname === '/materialVideoDetail') {
+            beacon_custom_glodlog.setWatchkeys([
+                'beacon_user_id',
+                'show_id',
+                'video_id',
+                'type',
+            ]);
+            return false;
+        }
+        if (pathname === '/myPromotion/consulatationDetail') {
+            beacon_custom_glodlog.setWatchkeys(['beacon_user_id', 'consult_id']);
+            return false;
+        }
+        var hasShowRouterList = [
+            '/home',
+            '/material',
+            '/material/video',
+            '/material/movieInfo',
+            '/material/picture',
+            '/material/basicInfo',
+            '/material/actor',
+            '/material/publish',
+            '/material/auditLog',
+            '/dataInsight/viewingCompass',
+            '/octopus',
+            '/myPromotion/effect/p2pEventSummary',
+            '/event/p2pEvent/reservation',
+            '/event/p2pEvent/info',
+            '/event/p2pEvent/edit',
+            '/compassDetail',
+            '/myPromotion/antiPiracy/create',
+            '/myPromotion/antiPiracy/edit',
+        ];
+        var hasShow = hasShowRouterList.indexOf(pathname) > -1;
+        if (!hasShow) {
+            beacon_custom_glodlog.deleteExparam('show_id');
+            beacon_custom_glodlog.setWatchkeys(user);
+            return false;
+        }
+
+        beacon_custom_glodlog.setWatchkeys(userWithShowId);
+    };
+    updataWatchkeys(window.location.pathname);
+    _pushState = window.history.pushState;
+    _replaceState = window.history.replaceState;
+    window.history.pushState = function () {
+        _pushState.apply(window.history, arguments);
+        updataWatchkeys(window.location.pathname);
+    };
+    window.history.replaceState = function () {
+        _pushState.apply(window.history, arguments);
+        updataWatchkeys(window.location.pathname);
+    };
+</script>
+<script src="//dev.g.alicdn.com/alipic/beacon/12.1.3/js/polyfills.js" crossorigin></script>
+<script src="//dev.g.alicdn.com/alipic/beacon/12.1.3/js/vendor.js" crossorigin></script>
+<script src="//dev.g.alicdn.com/alipic/beacon/12.1.3/js/app.js" crossorigin></script>
+<script
+        type="text/javascript"
+        src="//g.alicdn.com/sd/ncpc/nc.js??t=1656085788631"
+></script>
+</body>
+</html>
