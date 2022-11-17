@@ -77,4 +77,6 @@ public class ProxyController {
     public String baidu(){
         return "/baidu.html";
     }
+
+
 }

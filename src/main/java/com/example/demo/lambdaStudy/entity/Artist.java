@@ -6,7 +6,6 @@
 package com.example.demo.lambdaStudy.entity;
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +19,6 @@ import java.util.stream.Stream;
  * @author Richard Warburton
  */
 @Data
-@ToString
 public final class Artist {
     
     private String name;

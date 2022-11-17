@@ -19,7 +19,7 @@
     <javaTypeResolver>
         <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.alibaba.pictures.powergem.repository.entity"
+        <javaModelGenerator targetPackage="com.alipic.agravity.client.domain"
                             targetProject="tool/gen">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -31,7 +31,7 @@
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.alibaba.pictures.powergem.repository.dao"
+                             targetPackage="com.alipic.agravity.dao.gravity"
                              targetProject="tool/gen">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
@@ -65,8 +65,8 @@
 -->
 
 
-                                <table tableName="biz_channel_account_fans_info" domainObjectName="BizChannelAccountFansInfoDO"
-                                       mapperName="BizChannelAccountFansInfoDAO"
+                                <table tableName="gw_ads_show_pre_sale_algorithm_flight_rate" domainObjectName="GwAdsShowPreSaleAlgorithmFlightRateDO"
+                                       mapperName="GwAdsShowPreSaleAlgorithmFlightRateDAO"
                                        enableCountByExample="false" enableSelectByExample="false"
                                        enableUpdateByExample="false" enableDeleteByExample="false">
                                 </table>

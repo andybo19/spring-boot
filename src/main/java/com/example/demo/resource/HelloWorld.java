@@ -60,5 +60,11 @@ public class HelloWorld {
         return user;
     }
 
+    @GetMapping("/merge")
+    public String merge(){
+
+        return "/merge.html";
+    }
+
 
 }

@@ -1,35 +1,23 @@
 package com.example.demo.service.interview;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
+
 public class BasicTest {
 
     public static void main(String[] args) {
-       /* float i = 15/2;
-        System.out.println(i);*/
-
-       /* Boolean bl =null;
-        if(true == bl){
-            System.out.println(bl);
-        }*/
-
-     /*  int x =5;
-       int y =0;
-       y = x--;
-       y +=--x;
-       System.out.println(y);*/
-
-      /* int i=15;
-       int j =0;
-       try {
-            j+=i/j;
-       }catch (ArithmeticException e){
-           System.out.println("ArithmeticException");
-       }catch (Exception e){
-           System.out.println("Exception");
-       }finally {
-           System.out.println("0");
-       }*/
-      int x= 4;
-      System.out.println("value is " + ((x >4)?99:9));
+        BigDecimal s1=new BigDecimal(0.01);
+        BigDecimal s2=new BigDecimal(0.05);
+        BigDecimal add = s1.add(s2);
+        System.out.println(add);
+        Set<Integer> integerSet = Sets.newHashSet(1,2,3);
+        List<Integer> integers = Lists.newArrayList(4, 5, 6);
+        integerSet.addAll(integers);
+        System.out.println(integerSet);
 
 
     }

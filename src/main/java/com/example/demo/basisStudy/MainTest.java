@@ -1,7 +1,6 @@
 package com.example.demo.basisStudy;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.math.BigDecimal;
 
 /**
  * @author wan yu
@@ -10,10 +9,8 @@ import java.util.concurrent.Executors;
 public class MainTest {
 
     public static void main(String[] args) {
-        ExecutorService service = Executors.newFixedThreadPool(10);
+        int i = BigDecimal.ZERO.compareTo(null);
+        System.out.println(i);
 
-        service.submit(() -> System.out.println("Hello "));
-
-        System.out.println("World");
     }
 }
