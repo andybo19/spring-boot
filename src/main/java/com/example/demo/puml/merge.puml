@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:1.container启动;
+:2.Main Launcher;
+note right
+    1.启动Pandora容器
+    2.启动SpringBoot容器
+    3.容器应用健康检查设置
+    4.监听Spring contextrefreshedevent事件
+end note
+:3.publishEvent发送容器启动前事件;
+:4.prepare容器启动前准备;
+:5.loadConfiguration加载容器配置;
+:6.prepareEnv准备容器启动环境;
+:7.publishEvent发送容器准备启动事件;
+:8.doLaunch执行启动;
+note right
+    1.分批并行启动app
+    2.发送应用启动前事件
+    3.准备应用fatjar资源目录
+    4.创建应用相关目录软连接
+    5.发送应用资源就绪事件
+    6.创建应用类加载器appClassLoader
+    7.创建异步线程,设置线程的classloader为appClassLoader,启动线程
+    8.准备应用启动环境
+    9.发送应用准备启动事件
+    10.获取入口类目标main方法
+    11.替换上下文classloader, 防止应用误加载容器的类
+    12.反射调用main方法
+    13.应用启动
+    14.发送应用启动完成事件
+end note
+:9.publishEvent发送容器启动完成事件;
+stop
+
+@enduml

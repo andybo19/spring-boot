@@ -9,6 +9,7 @@ public class AESDemo {
     public static void main(String[] args) throws Exception {
         //String key = CryptoUtils.generateSymmetricKey(CryptoUtils.Algorithm.AES_CBC_PKCS5);
         String key = "TBAbgPzpYqL2X2u7DkZUkA==";
+        String k = "{\"fields\":[\"uid\",\"project_name\"],\"odpsProjectName\":\"dianying\",\"odpsTableName\":\"ads_gw_dream_send_project_message_d\",\"partition\":{\"ds\":\"20221122\",\"dt\":\"\"}}";
        /* System.out.println("生成的key为：" + key);
         String cipherText = CryptoUtils.encryptSymmetrically(key, key, "Hello", CryptoUtils.Algorithm.AES_CBC_PKCS5);
         System.out.println("加密后的密文为：" + cipherText);
