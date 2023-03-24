@@ -33,6 +33,27 @@ public class FileOperation {
         }
     }
 
+    public void chatWrite(){
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("input.txt");
+            OutputStream outputStream = new FileOutputStream("output.txt");
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer,0, bytesRead);
+            }
+
+            inputStream.close();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void safeClose(InputStream inputStream) {
         if (inputStream != null) {
             try {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="off" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">../logs/</property>
-        <property name="LOG_NAME">spring-boot-base-project</property>
+        <property name="LOG_HOME">/Users/mayongbo/logs</property>
+        <property name="LOG_NAME">springboot-demo</property>
     </properties>
     <appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
@@ -17,10 +17,12 @@
         </RollingRandomAccessFile>
     </appenders>
     <loggers>
-        <root level="DEBUG" includeLocation="true">
+        <root level="DEBUG" includeLocation="false">
             <appender-ref ref="Console"/>
             <appender-ref ref="ProductionLog"/>
         </root>
-        <logger name="com.example.demo" level="DEBUG"/>
+        <logger name="com.example.demo" level="info" additivity="false" >
+            <appender-ref ref="ProductionLog"/>
+        </logger>
     </loggers>
 </configuration>
