@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <classPathEntry location="/Users/mayongbo/mavenrepository/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar"/>
-    <context id="lark-itemmgr" targetRuntime="Mybatis3Simple">
+    <context id="lark-itemmgr" targetRuntime="Mybatis3">
 
         <commentGenerator>
             <!--<property name="suppressAllComments" value="true" />-->
@@ -19,7 +19,7 @@
     <javaTypeResolver>
         <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.alipic.agravity.client.domain"
+        <javaModelGenerator targetPackage="com.alipic.artwork.repository.entity"
                             targetProject="tool/gen">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -31,7 +31,7 @@
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.alipic.agravity.dao.gravity"
+                             targetPackage="com.alipic.artwork.repository.dao"
                              targetProject="tool/gen">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
@@ -65,8 +65,8 @@
 -->
 
 
-                                <table tableName="gw_ads_show_pre_sale_algorithm_flight_rate" domainObjectName="GwAdsShowPreSaleAlgorithmFlightRateDO"
-                                       mapperName="GwAdsShowPreSaleAlgorithmFlightRateDAO"
+                                <table tableName="abc_import_task" domainObjectName="AbcImportTaskDO"
+                                       mapperName="AbcImportTaskDAO"
                                        enableCountByExample="false" enableSelectByExample="false"
                                        enableUpdateByExample="false" enableDeleteByExample="false">
                                 </table>
